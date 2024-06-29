@@ -25,11 +25,12 @@ namespace ToyRobot
 
                 try
                 {
-                    robotCommandFactory.BuildCommand(cmd).execute();
+                    IRobotCommand robotCommand = robotCommandFactory.BuildCommand(cmd);
+                    if (robotCommand != null) { robotCommand.execute(); }
                 }
                 catch (ArgumentException ex)
                 {
-                    // Do nothing for invalid command inputs :)
+                    ui.PrintMessage(ex.Message);
                 }
             }
         }
