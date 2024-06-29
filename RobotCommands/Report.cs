@@ -11,15 +11,17 @@ namespace ToyRobot.Commands
     internal class Report : IRobotCommand
     {
         private Robot _robot;
+        private UI _ui;
 
-        public Report(Robot robot)
+        public Report(Robot robot, UI ui)
         {
             this._robot = robot;
+            this._ui = ui;
         }
 
         public void execute()
         {
-            Console.WriteLine(_robot.Report());
+            _ui.PrintMessage(_robot.Report());
         }
     }
 }
