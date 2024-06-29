@@ -34,7 +34,7 @@ namespace ToyRobot
             Console.WriteLine($"---------TOY ROBOT SIMULATOR---------");
             Console.WriteLine($"Tabletop dimensions: {tabletopWidth} x {tabletopHeight}");
             Console.WriteLine("Commands:");
-            Console.WriteLine("\tPLACE X, Y, (NORTH|SOUTH|EAST|WEST)");
+            Console.WriteLine("\tPLACE X,Y,(NORTH|SOUTH|EAST|WEST)");
             Console.WriteLine("\tMOVE");
             Console.WriteLine("\tLEFT");
             Console.WriteLine("\tRIGHT");
