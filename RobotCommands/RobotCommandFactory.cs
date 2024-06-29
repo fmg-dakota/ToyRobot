@@ -36,15 +36,15 @@ namespace ToyRobot.RobotCommands
             }
             else if (cmd == "MOVE")
             {
-                return new Move();
+                return new Move(_tabletop, _robot);
             }
             else if (cmd == "LEFT" || cmd == "RIGHT")
             {
-                return new Turn();
+                return new Turn(_robot, cmd);
             }
             else if (cmd == "REPORT")
             {
-                return new Report(_robot, _ui);
+                return new Report(_tabletop, _robot, _ui);
             }
             else
             {

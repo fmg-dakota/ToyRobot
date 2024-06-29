@@ -24,5 +24,19 @@ namespace ToyRobot.Models
 
             return true;
         }
+
+        public string PrintTabletop()
+        {
+            string tabletopString = "";
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    tabletopString += "[ ]";
+                }
+                tabletopString += "\n";
+            }
+            return tabletopString;
+        }
     }
 }

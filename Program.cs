@@ -7,7 +7,7 @@ namespace ToyRobot
     {
         static void Main(string[] args)
         {
-            const int TABLETOP_WIDTH = 5;
+            const int TABLETOP_WIDTH = 8;
             const int TABLETOP_HEIGHT = 5;
 
             UI ui = new UI();
