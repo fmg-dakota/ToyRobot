@@ -79,6 +79,26 @@ namespace ToyRobotTests
             Assert.ThrowsException<ArgumentException>(() => commandFactory.BuildCommand(cmd));
         }
 
+        [TestMethod]
+        public void Place_InvalidCmd_InvalidXValue()
+        {
+            RobotCommandFactory commandFactory = SetupFactory();
+
+            string cmd = "PLACE 100000000000000000000000000,1,NORTH";
+
+            Assert.ThrowsException<ArgumentException>(() => commandFactory.BuildCommand(cmd));
+        }
+
+        [TestMethod]
+        public void Place_InvalidCmd_InvalidYValue()
+        {
+            RobotCommandFactory commandFactory = SetupFactory();
+
+            string cmd = "PLACE 1,100000000000000000000000000,NORTH";
+
+            Assert.ThrowsException<ArgumentException>(() => commandFactory.BuildCommand(cmd));
+        }
+
         // MOVE
         [TestMethod]
         public void Move_ValidCmd()
@@ -120,6 +140,7 @@ namespace ToyRobotTests
             Assert.IsInstanceOfType(robotCommand, typeof(Turn));
         }
 
+        // General
         [TestMethod]
         public void InvalidCmd()
         {
@@ -129,41 +150,5 @@ namespace ToyRobotTests
 
             Assert.ThrowsException<ArgumentException>(() => commandFactory.BuildCommand(cmd));
         }
-
-        [TestMethod]
-        public void ParsePlaceCmd_ValidCmd()
-        {
-            RobotCommandFactory commandFactory = SetupFactory();
-
-            string cmd = "PLACE 1,2,NORTH";
-
-            Position position = commandFactory.ParsePlaceCmd(cmd);
-
-            Assert.AreEqual(1, position.X);
-            Assert.AreEqual(2, position.Y);
-            Assert.AreEqual(Direction.NORTH, position.Direction);
-        }
-
-        [TestMethod]
-        public void ParsePlaceCmd_InvalidCmd()
-        {
-            RobotCommandFactory commandFactory = SetupFactory();
-
-            string cmd = "PLACE X,Y,NORTH";
-
-            Assert.ThrowsException<ArgumentException>(() => commandFactory.ParsePlaceCmd(cmd));
-        }
-
-        [TestMethod]
-        public void ParsePlaceCmd_InvalidDirection()
-        {
-            RobotCommandFactory commandFactory = SetupFactory();
-
-            string cmd = "PLACE 1,2,WESTEAST";
-
-            Assert.ThrowsException<ArgumentException>(() => commandFactory.ParsePlaceCmd(cmd));
-        }
-
-
     }
 }

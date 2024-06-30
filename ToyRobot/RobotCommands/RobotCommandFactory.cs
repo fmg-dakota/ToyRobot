@@ -52,8 +52,7 @@ namespace ToyRobot.RobotCommands
             }
         }
 
-        // TO DO - Definitely add try/catches here... and everywhere else but especially here.
-        public Position ParsePlaceCmd(string cmd)
+        private Position ParsePlaceCmd(string cmd)
         {
 
             Match match = Regex.Match(cmd, _placeRegex);
@@ -62,7 +61,6 @@ namespace ToyRobot.RobotCommands
             {
                 throw new ArgumentException("Invalid command format");
             }
-
 
             // These try parses should always work if the regex successfully matches but just
             //   to be safe I've added some exceptions.
