@@ -25,7 +25,7 @@ namespace ToyRobot.RobotCommands
             _ui = ui;
         }
 
-        public IRobotCommand BuildCommand(string cmd)
+        public IRobotCommand? BuildCommand(string cmd)
         {
             if (!IsValidCommand(cmd)) { throw new ArgumentException("Invalid command input."); }
 
@@ -58,9 +58,28 @@ namespace ToyRobot.RobotCommands
 
             Match match = Regex.Match(cmd, _placeRegex);
 
-            int x = int.Parse(match.Groups[1].Value);
-            int y = int.Parse(match.Groups[2].Value);
-            Direction direction = (Direction)Enum.Parse(typeof(Direction), match.Groups[3].Value);
+            if (!match.Success)
+            {
+                throw new ArgumentException("Invalid command format");
+            }
+
+
+            // These try parses should always work if the regex successfully matches but just
+            //   to be safe I've added some exceptions.
+            if (!int.TryParse(match.Groups[1].Value, out int x))
+            {
+                throw new ArgumentException("Invalid value for X coordinate");
+            }
+
+            if (!int.TryParse(match.Groups[2].Value, out int y))
+            {
+                throw new ArgumentException("Invalid value for Y coordinate");
+            }
+
+            if (!Enum.TryParse(match.Groups[3].Value, out Direction direction))
+            {
+                throw new ArgumentException("Invalid value for direction");
+            }
 
             return new Position(x, y, direction);
         }

@@ -25,7 +25,8 @@ namespace ToyRobot
 
                 try
                 {
-                    IRobotCommand robotCommand = robotCommandFactory.BuildCommand(cmd);
+                    IRobotCommand? robotCommand = robotCommandFactory.BuildCommand(cmd);
+                    
                     if (robotCommand != null) { robotCommand.execute(); }
                 }
                 catch (ArgumentException ex)
