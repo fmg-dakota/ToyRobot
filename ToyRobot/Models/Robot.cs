@@ -22,23 +22,25 @@ namespace ToyRobot.Models
 
         public string Report()
         {
-            if (Position == null) { return "MUST PLACE ROBOT FIRST."; }
+            if (Position == null) { return "NO POSITION TO REPORT."; }
 
             return $"{Position.X},{Position.Y},{Position.Direction}";
         }
 
         public string GetRobotIcon()
         {
+            if(Position == null || Position.Direction == null) { return "?"; }
+
             switch (Position.Direction)
             {
                 case Direction.NORTH:
                     return "▲";
                 case Direction.SOUTH:
                     return "▼";
-                case Direction.WEST:
-                    return "◄";
                 case Direction.EAST:
                     return "►";
+                case Direction.WEST:
+                    return "◄";
                 default:
                     return "?";
             }
