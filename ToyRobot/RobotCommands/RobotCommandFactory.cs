@@ -15,6 +15,7 @@ namespace ToyRobot.RobotCommands
         private Robot _robot;
         private UI _ui;
 
+        // Regex to match the place cmd, eg. PLACE 1,1,NORTH
         private string _placeRegex = @"PLACE\s(\d+),(\d+),(NORTH|SOUTH|EAST|WEST)$";
 
         public RobotCommandFactory(Tabletop tabletop, Robot robot, UI ui)
@@ -24,14 +25,28 @@ namespace ToyRobot.RobotCommands
             _ui = ui;
         }
 
+        /// <summary>
+        /// Returns the relevant command object depending on the input command.
+        /// </summary>
+        /// <param name="cmd">Input command</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Exception for invalid command input.</exception>
         public IRobotCommand? BuildCommand(string cmd)
         {
-            if (!IsValidCommand(cmd)) { throw new ArgumentException("Invalid command input."); }
-
+            // This is only a basic implemntation of the factory pattern for a basic app.
+            // TODO: There's probably a more graceful way to handle the different cases in a switch
+            //    statement...
             if (cmd.Contains("PLACE"))
             {
-                Position newPos = ParsePlaceCmd(cmd);
-                return new Place(_tabletop, _robot, newPos);
+                try
+                {
+                    Position newPos = ParsePlaceCmd(cmd);
+                    return new Place(_tabletop, _robot, newPos);
+                }
+                catch (ArgumentException e)
+                {
+                    throw new ArgumentException($"PLACE command: {e.Message}");
+                }
             }
             else if (cmd == "MOVE")
             {
@@ -51,10 +66,16 @@ namespace ToyRobot.RobotCommands
             }
             else
             {
-                return null;
+                throw new ArgumentException("Invalid command input."); ;
             }
         }
 
+        /// <summary>
+        /// Parses the PLACE 1,1,NORTH command and returns a Position based off it.
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns>Position object based off the PLACE values</returns>
+        /// <exception cref="ArgumentException">Invalid PLACE format.</exception>
         private Position ParsePlaceCmd(string cmd)
         {
 
@@ -83,31 +104,6 @@ namespace ToyRobot.RobotCommands
             }
 
             return new Position(x, y, direction);
-        }
-
-        private bool IsValidCommand(string cmd)
-        {
-            if (string.IsNullOrEmpty(cmd)) return false;
-
-            string[] VALID_COMMANDS_REGEX =
-            {
-                _placeRegex,
-                @"MOVE$",
-                @"LEFT$",
-                @"RIGHT$",
-                @"REPORT$",
-                @"QUIT$"
-            };
-
-            foreach (string cmdRegex in VALID_COMMANDS_REGEX)
-            {
-                if (Regex.IsMatch(cmd, cmdRegex))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
     }
 }

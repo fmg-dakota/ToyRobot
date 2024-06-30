@@ -21,16 +21,24 @@ namespace ToyRobot.RobotCommands
             this._ui = ui;
         }
 
+        /// <summary>
+        /// Generates a pretty string representation of the state of the tabletop and robot.
+        /// </summary>
+        /// <returns>String representation of tabletop and robot</returns>
         private string GenerateTabletopOutput()
         {
             if (_robot.Position == null) { return ""; }
 
             string tabletopString = "";
-            for (int i = _tabletop.height - 1; i >= 0; i--)
+
+            // x decrements here because of the layout of the simulation.
+            //    0,0 is the origin in the SOUTH WEST corner so we want to
+            //    start drawing from the bottom.
+            for (int y = _tabletop.height - 1; y >= 0; y--)
             {
-                for (int j = 0; j < _tabletop.width; j++)
+                for (int x = 0; x < _tabletop.width; x++)
                 {
-                    if (i == _robot.Position.Y && j == _robot.Position.X)
+                    if (y == _robot.Position.Y && x == _robot.Position.X)
                     {
                         tabletopString += $"[{_robot.GetRobotIcon()}]";
                     }
@@ -45,7 +53,9 @@ namespace ToyRobot.RobotCommands
 
         }
 
-
+        /// <summary>
+        /// Implementation of execute() IRobotCommand interface.
+        /// </summary>
         public void execute()
         {
             _ui.PrintMessage(_robot.Report());

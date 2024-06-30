@@ -20,6 +20,11 @@ namespace ToyRobot.Models
             Position = position;
         }
 
+
+        /// <summary>
+        /// Generates formatted string of Robot position.
+        /// </summary>
+        /// <returns></returns>
         public string Report()
         {
             if (Position == null) { return "NO POSITION TO REPORT."; }
@@ -27,6 +32,10 @@ namespace ToyRobot.Models
             return $"{Position.X},{Position.Y},{Position.Direction}";
         }
 
+        /// <summary>
+        /// Returns robot icon based off the direction the robot is facing
+        /// </summary>
+        /// <returns></returns>
         public string GetRobotIcon()
         {
             if(Position == null || Position.Direction == null) { return "?"; }

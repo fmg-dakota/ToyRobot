@@ -16,6 +16,10 @@ namespace ToyRobot.RobotCommands
             this._robot = robot;
         }
 
+        /// <summary>
+        /// Implementation of execute() IRobotCommand interface.
+        /// Changes direction the robot is facing.
+        /// </summary>
         public void execute()
         {
             if (_robot == null || _robot.Position == null || _robot.Position.Direction == null) { return; }

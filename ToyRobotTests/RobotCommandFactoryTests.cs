@@ -24,7 +24,6 @@ namespace ToyRobotTests
             return commandFactory;
         }
 
-        // PLACE
         [TestMethod]
         public void Place_ValidCmd()
         {
@@ -98,7 +97,6 @@ namespace ToyRobotTests
             Assert.ThrowsException<ArgumentException>(() => commandFactory.BuildCommand(cmd));
         }
 
-        // MOVE
         [TestMethod]
         public void Move_ValidCmd()
         {
@@ -112,9 +110,6 @@ namespace ToyRobotTests
         }
 
 
-        // TURN
-        //     Hmm, it seems having both LEFT and RIGHT both using TURN makes it hard to test...
-        //     might have to refactor Turn into LeftTurn and RightTurn.
         [TestMethod]
         public void Left_ValidCmd()
         {
@@ -139,7 +134,6 @@ namespace ToyRobotTests
             Assert.IsInstanceOfType(robotCommand, typeof(TurnRight));
         }
 
-        // General
         [TestMethod]
         public void InvalidCmd()
         {

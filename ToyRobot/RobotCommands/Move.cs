@@ -19,6 +19,10 @@ namespace ToyRobot.RobotCommands
             this._tabletop = tabletop;
         }
 
+        /// <summary>
+        /// Implementation of execute() IRobotCommand interface.
+        /// If proposed move is valid, the robots position is updated.
+        /// </summary>
         public void execute()
         {
             if (_robot == null || _robot.Position == null) { return; }
