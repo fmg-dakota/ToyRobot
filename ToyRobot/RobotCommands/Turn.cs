@@ -34,6 +34,8 @@ namespace ToyRobot.RobotCommands
         {
             if (_robot == null || _robot.Position == null || _robot.Position.Direction == null) { return; }
 
+            if (_leftRight != "LEFT" && _leftRight != "RIGHT") { return; }
+
             _robot.Position.Direction = _directionMap[_robot.Position.Direction][_leftRight];
         }
     }
