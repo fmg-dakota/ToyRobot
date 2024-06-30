@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ToyRobot.Models;
 using ToyRobot.RobotCommands;
 
-namespace ToyRobot.Commands
+namespace ToyRobot.RobotCommands
 {
     internal class Place : IRobotCommand
     {

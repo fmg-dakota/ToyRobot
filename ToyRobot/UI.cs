@@ -10,8 +10,6 @@ namespace ToyRobot
 {
     internal class UI
     {
-        
-
         public UI() { }
 
         public void PrintMessage(string msg)
@@ -24,7 +22,6 @@ namespace ToyRobot
             Console.Write(prompt);
             string? input = Console.ReadLine();
 
-            //if (input == null || !IsValidCommand(input)) { return ""; }
             if(input == null) { return ""; }
 
             return input;
