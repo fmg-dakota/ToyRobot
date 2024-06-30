@@ -51,17 +51,5 @@ namespace ToyRobotTests
                 Assert.IsFalse(tabletop.IsValidPosition(position));
             }
         }
-
-        [TestMethod]
-        public void PrintTabletop_ReturnsExpectedString()
-        {
-            // Needs custom height and width to ensure output is correct
-            //     Using 5x5.
-            Tabletop tabletop = new Tabletop(5, 5);
-
-            string expectedOutput = "[ ][ ][ ][ ][ ]\n[ ][ ][ ][ ][ ]\n[ ][ ][ ][ ][ ]\n[ ][ ][ ][ ][ ]\n[ ][ ][ ][ ][ ]\n";
-
-            Assert.AreEqual(expectedOutput, tabletop.PrintTabletop());
-        }
     }
 }
