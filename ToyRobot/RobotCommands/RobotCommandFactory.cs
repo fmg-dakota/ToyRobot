@@ -37,9 +37,13 @@ namespace ToyRobot.RobotCommands
             {
                 return new Move(_tabletop, _robot);
             }
-            else if (cmd == "LEFT" || cmd == "RIGHT")
+            else if (cmd == "LEFT")
             {
-                return new Turn(_robot, cmd);
+                return new TurnLeft(_robot);
+            }
+            else if (cmd == "RIGHT")
+            {
+                return new TurnRight(_robot);
             }
             else if (cmd == "REPORT")
             {

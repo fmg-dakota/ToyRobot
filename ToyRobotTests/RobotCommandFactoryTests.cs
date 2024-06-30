@@ -124,7 +124,7 @@ namespace ToyRobotTests
 
             IRobotCommand? robotCommand = commandFactory.BuildCommand(cmd);
             Assert.IsNotNull(robotCommand);
-            Assert.IsInstanceOfType(robotCommand, typeof(Turn));
+            Assert.IsInstanceOfType(robotCommand, typeof(TurnLeft));
         }
 
         [TestMethod]
@@ -136,7 +136,7 @@ namespace ToyRobotTests
 
             IRobotCommand? robotCommand = commandFactory.BuildCommand(cmd);
             Assert.IsNotNull(robotCommand);
-            Assert.IsInstanceOfType(robotCommand, typeof(Turn));
+            Assert.IsInstanceOfType(robotCommand, typeof(TurnRight));
         }
 
         // General
