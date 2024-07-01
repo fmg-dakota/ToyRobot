@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToyRobot.Models;
-using ToyRobot.RobotCommands;
+﻿using ToyRobot.Models;
 
 namespace ToyRobot.RobotCommands
 {
+    /// <summary>
+    /// Command that moves Robot +1 place in whatever direction it
+    /// is facing, as long as the new location is valid.
+    /// </summary>
     internal class Move : IRobotCommand
     {
         private Robot _robot;
