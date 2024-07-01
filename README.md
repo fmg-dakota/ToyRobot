@@ -139,3 +139,18 @@ ToyRobot/
 3. Run the application:
     ```sh
     ./ToyRobot.exe
+    ```
+    
+## Testing
+
+1. Navigate to ToyRobotTests
+   ```sh
+   cd ToyRobotTests
+   ```
+   
+2. Run tests
+   ```sh
+   dotnet test ToyRobotTests.csproj
+   ```
+   
+3. Cry?
