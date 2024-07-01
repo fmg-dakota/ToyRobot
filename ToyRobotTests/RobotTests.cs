@@ -1,5 +1,4 @@
-﻿using NuGet.Frameworks;
-using ToyRobot.Models;
+﻿using ToyRobot.Models;
 
 namespace ToyRobotTests
 {
