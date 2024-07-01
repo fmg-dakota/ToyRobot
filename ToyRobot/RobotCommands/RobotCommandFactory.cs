@@ -31,40 +31,36 @@ namespace ToyRobot.RobotCommands
         /// <exception cref="ArgumentException">Exception for invalid command input.</exception>
         public IRobotCommand? BuildCommand(string cmd)
         {
+            // This works off the assumption that all commands will always be the format "ACTION (args)"
+            string firstWordCmd = cmd.Split(' ')[0];
+
+
             // This is only a basic implemntation of the factory pattern for a basic app.
-            // TODO: There's probably a more graceful way to handle the different cases in a switch
-            //    statement...
-            if (cmd.Contains("PLACE"))
+            // TODO: There's probably a more graceful way to handle the different cases in a dictionary...
+            switch(firstWordCmd)
             {
-                try
-                {
-                    Position newPos = ParsePlaceCmd(cmd);
-                    return new Place(_tabletop, _robot, newPos);
-                }
-                catch (ArgumentException e)
-                {
-                    throw new ArgumentException($"PLACE command: {e.Message}");
-                }
-            }
-            else if (cmd == "MOVE")
-            {
-                return new Move(_tabletop, _robot);
-            }
-            else if (cmd == "LEFT")
-            {
-                return new TurnLeft(_robot);
-            }
-            else if (cmd == "RIGHT")
-            {
-                return new TurnRight(_robot);
-            }
-            else if (cmd == "REPORT")
-            {
-                return new Report(_tabletop, _robot, _ui);
-            }
-            else
-            {
-                throw new ArgumentException("Invalid command input."); ;
+                case "PLACE":
+                    try
+                    {
+                        Position newPos = ParsePlaceCmd(cmd);
+                        return new Place(_tabletop, _robot, newPos);
+                    }
+                    catch (ArgumentException e)
+                    {
+                        throw new ArgumentException($"PLACE command: {e.Message}");
+                    }
+                case "MOVE":
+                    return new Move(_tabletop, _robot);
+                case "LEFT":
+                    return new TurnLeft(_robot);
+                case "RIGHT":
+                    return new TurnRight(_robot);
+                case "REPORT":
+                    return new Report(_tabletop, _robot, _ui);
+                case "QUIT":
+                    return null;
+                default:
+                    throw new ArgumentException("Invalid command input."); ;
             }
         }
 
